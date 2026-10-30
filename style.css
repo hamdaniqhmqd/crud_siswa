@@ -1,0 +1,584 @@
+/* ============ 1. VARIABEL ============ */
+:root {
+  /* warna */
+  --warna-utama: #2563eb;
+  --warna-utama-gelap: #1d4ed8;
+  --warna-bahaya: #dc2626;
+  --warna-abu: #6b7280;
+  --warna-sukses-bg: #dcfce7;
+  --warna-sukses-teks: #166534;
+  --warna-gagal-bg: #fee2e2;
+  --warna-gagal-teks: #991b1b;
+  /* permukaan dan teks */
+  --bg: #f1f5f9;
+  --permukaan: #ffffff;
+  --permukaan-2: #f8fafc;
+  --garis: #e2e8f0;
+  --teks: #0f172a;
+  --teks-redup: #64748b;
+  /* ukuran */
+  --radius: 8px;
+  --jarak-1: 4px;
+  --jarak-2: 8px;
+  --jarak-3: 12px;
+  --jarak-4: 16px;
+  --jarak-5: 24px;
+  --bayangan: 0 1px 3px rgb(0 0 0 / 0.08), 0 4px 12px rgb(0 0 0 / 0.04);
+  --transisi: 0.2s ease;
+}
+
+/* ============ 12. TEMA GELAP ============ */
+[data-theme="dark"] {
+  --bg: #0b1120;
+  --permukaan: #111827;
+  --permukaan-2: #1f2937;
+  --garis: #334155;
+  --teks: #e5e7eb;
+  --teks-redup: #94a3b8;
+  --warna-sukses-bg: #14532d;
+  --warna-sukses-teks: #bbf7d0;
+  --warna-gagal-bg: #7f1d1d;
+  --warna-gagal-teks: #fecaca;
+  --bayangan: none;
+  color-scheme: dark; /* input date, scrollbar ikut gelap */
+}
+[data-theme="dark"] .badge--l {
+  background: #1e3a8a;
+  color: #bfdbfe;
+}
+[data-theme="dark"] .badge--p {
+  background: #831843;
+  color: #fbcfe8;
+}
+
+/* ============ 2. RESET RINGAN ============ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family: system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--teks);
+  background: var(--bg);
+}
+h1 {
+  margin: 0 0 var(--jarak-4);
+  font-size: 1.6rem;
+}
+a {
+  color: var(--warna-utama);
+}
+
+/* ============ 3. LAYOUT ============ */
+header {
+  position: sticky; /* menempel di atas saat halaman digulir */
+  top: 0;
+  z-index: 10;
+  background: var(--permukaan);
+  border-bottom: 1px solid var(--garis);
+}
+#topbar__isi {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: var(--jarak-3) var(--jarak-4);
+  display: flex;
+  align-items: center; /* vertikal */
+  justify-content: space-between; /* brand di kiri, nav di kanan  horizontal*/
+  gap: var(--jarak-4);
+}
+.topbar__brand {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--teks);
+  text-decoration: none;
+}
+.topbar__nav {
+  display: flex;
+  align-items: center;
+  gap: var(--jarak-3);
+}
+.topbar__link {
+  color: var(--teks-redup);
+  text-decoration: none;
+  font-weight: 500;
+}
+.topbar__link:hover {
+  color: var(--warna-utama);
+}
+.container {
+  max-width: 1000px;
+  margin: var(--jarak-5) auto;
+  padding: var(--jarak-5);
+  background: var(--permukaan);
+  border-radius: var(--radius);
+  box-shadow: var(--bayangan);
+}
+
+/* ============ 4. TOMBOL ============ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--jarak-1);
+  padding: 7px 14px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: var(--warna-utama);
+  color: #fff;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background var(--transisi),
+    transform var(--transisi);
+}
+.btn:hover {
+  background: var(--warna-utama-gelap);
+}
+.btn:active {
+  transform: translateY(1px); /* efek "ditekan" */
+}
+.btn:focus-visible {
+  outline: 3px solid rgb(37 99 235 / 0.4);
+  outline-offset: 2px;
+}
+.btn-hapus {
+  background: var(--warna-bahaya);
+}
+.btn-hapus:hover {
+  background: #b91c1c;
+}
+.btn-abu {
+  background: var(--warna-abu);
+}
+.btn-abu:hover {
+  background: #4b5563;
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--teks);
+  border-color: var(--garis);
+}
+.btn-ghost:hover {
+  background: var(--permukaan-2);
+}
+
+/* ============ 5. PESAN ============ */
+.pesan {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--jarak-3);
+  padding: var(--jarak-3) var(--jarak-4);
+  margin: var(--jarak-3) 0;
+  border-radius: 6px;
+  border-left: 4px solid currentColor; /* garis kiri mengikuti warna teks */
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+.pesan ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.sukses {
+  background: var(--warna-sukses-bg);
+  color: var(--warna-sukses-teks);
+}
+.gagal {
+  background: var(--warna-gagal-bg);
+  color: var(--warna-gagal-teks);
+}
+.pesan.hilang {
+  opacity: 0;
+  transform: translateY(-6px);
+}
+
+/* ============ 6. TOOLBAR & FILTER ============ */
+.toolbar {
+  display: flex;
+  flex-wrap: wrap; /* turun ke baris baru jika tidak muat */
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--jarak-3);
+}
+.toolbar__info {
+  margin: 0;
+  color: var(--teks-redup);
+  font-size: 14px;
+}
+.filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--jarak-3);
+  margin: var(--jarak-4) 0;
+  padding: var(--jarak-4);
+  background: var(--permukaan-2);
+  border: 1px solid var(--garis);
+  border-radius: var(--radius);
+}
+/* div terakhir (berisi tombol) dibuat selebar seluruh kolom */
+.filters > div:last-child {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--jarak-2);
+  justify-content: flex-end;
+}
+/* ============ 7. FORM ============ */
+label {
+  display: block;
+  margin-bottom: var(--jarak-1);
+  font-weight: 600;
+  font-size: 14px;
+}
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 8px 10px;
+  font: inherit;
+  color: var(--teks);
+  background: var(--permukaan);
+  border: 1px solid var(--garis);
+  border-radius: 6px;
+  transition:
+    border-color var(--transisi),
+    box-shadow var(--transisi);
+}
+input:focus-visible,
+select:focus-visible {
+  outline: none;
+
+  border-color: var(--warna-utama);
+  box-shadow: 0 0 0 3px rgb(37 99 235 / 0.2); /* pengganti outline */
+}
+/* :user-invalid hanya aktif setelah pengguna berinteraksi dengan input */
+input:user-invalid,
+.is-invalid {
+  border-color: var(--warna-bahaya);
+  box-shadow: 0 0 0 3px rgb(220 38 38 / 0.15);
+}
+.field {
+  margin-bottom: var(--jarak-4);
+}
+.field__bantuan {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--jarak-1);
+  font-size: 13px;
+  color: var(--teks-redup);
+}
+.field__error {
+  color: var(--warna-bahaya);
+}
+form.inline {
+  display: inline;
+}
+.form-siswa {
+  display: grid;
+  grid-template-columns: 1fr;
+  column-gap: var(--jarak-5);
+}
+.form-aksi {
+  grid-column: 1 / -1;
+  display: flex;
+  gap: var(--jarak-2);
+  margin-top: var(--jarak-2);
+}
+@media (min-width: 768px) {
+  .form-siswa {
+    grid-template-columns: 1fr 1fr; /* dua kolom di layar lebar */
+  }
+}
+
+/* ============ 8. TABEL ============ */
+.tabel-wrap {
+  overflow-x: auto; /* tabel bisa digeser ke samping, halaman tidak ikut melebar */
+  border: 1px solid var(--garis);
+  border-radius: var(--radius);
+  margin-top: var(--jarak-4);
+}
+.tabel {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+}
+.tabel th,
+.tabel td {
+  padding: 10px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--garis);
+  vertical-align: middle;
+}
+.tabel th {
+  position: sticky;
+  top: 0;
+  background: var(--permukaan-2);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--teks-redup);
+}
+.tabel tbody tr:nth-child(even) {
+  background: var(--permukaan-2); /* zebra: baris genap sedikit lebih gelap */
+}
+.tabel tbody tr:hover {
+  background: rgb(37 99 235 / 0.06);
+}
+.tabel tbody tr:last-child td {
+  border-bottom: 0;
+}
+.tabel__kosong {
+  text-align: center;
+  color: var(--teks-redup);
+  padding: var(--jarak-5);
+}
+.aksi {
+  white-space: nowrap;
+}
+/* ============ 9. BADGE ============ */
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px; /* sudut sangat bulat = bentuk pil */
+  font-size: 12px;
+
+  font-weight: 600;
+}
+.badge--l {
+  background: #dbeafe;
+  color: #1e40af;
+}
+.badge--p {
+  background: #fce7f3;
+  color: #9d174d;
+}
+/* ============ 10. PAGINATION ============ */
+.pagination {
+  display: flex;
+  gap: var(--jarak-2);
+  align-items: center;
+  justify-content: center;
+  margin: var(--jarak-4) 0 0;
+}
+.pagination .nonaktif {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ============ 11. RESPONSIF ============ */
+@media (max-width: 640px) {
+  .container {
+    margin: 0;
+    padding: var(--jarak-4);
+    border-radius: 0;
+  }
+  .topbar__link {
+    display: none; /* sisakan brand dan tombol tema di HP */
+  }
+  .tabel-wrap {
+    border: 0;
+    overflow: visible;
+  }
+  .tabel {
+    min-width: 0;
+  }
+  .tabel thead {
+    display: none; /* judul kolom diganti data-label */
+  }
+  .tabel,
+  .tabel tbody,
+  .tabel tr,
+  .tabel td {
+    display: block;
+    width: 100%;
+  }
+  .tabel tr {
+    margin-bottom: var(--jarak-3);
+    padding: var(--jarak-2) var(--jarak-3);
+    border: 1px solid var(--garis);
+    border-radius: var(--radius);
+    background: var(--permukaan);
+  }
+  .tabel tbody tr:nth-child(even) {
+    background: var(--permukaan);
+  }
+  .tabel td {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--jarak-3);
+    border: 0;
+    padding: 6px 0;
+  }
+  /* tampilkan isi data-label sebagai judul di kiri */
+  .tabel td[data-label]::before {
+    content: attr(data-label);
+    font-weight: 600;
+    color: var(--teks-redup);
+  }
+  .tabel td.aksi {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding-top: var(--jarak-2);
+  }
+  .tabel td.aksi::before {
+    display: none;
+  }
+}
+
+/* ============ 13. KOMPONEN UNTUK JAVASCRIPT ============ */
+.tutup-pesan {
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+}
+/* dialog konfirmasi hapus */
+.dialog {
+  width: min(540px, 90vw); /* 400px, tetapi tidak lebih dari 90% lebar layar */
+  padding: var(--jarak-5);
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--permukaan);
+  color: var(--teks);
+  box-shadow: 0 20px 50px rgb(0 0 0 / 0.3);
+}
+.dialog::backdrop {
+  background: rgb(15 23 42 / 0.5); /* latar gelap di belakang dialog */
+  backdrop-filter: blur(2px);
+}
+.dialog h2 {
+  margin: 0 0 var(--jarak-2);
+  font-size: 1.2rem;
+}
+.dialog__aksi {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--jarak-2);
+  margin-top: var(--jarak-5);
+}
+/* daftar saran pencarian langsung */
+.cari-wrap {
+  position: relative; /* patokan posisi untuk .saran */
+}
+.saran {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  margin: 4px 0 0;
+  padding: 0;
+  list-style: none;
+  background: var(--permukaan);
+  border: 1px solid var(--garis);
+  border-radius: 6px;
+  box-shadow: var(--bayangan);
+  max-height: 240px;
+  overflow-y: auto;
+}
+.saran:empty {
+  display: none; /* sembunyikan jika belum ada isi */
+}
+.saran a {
+  display: block;
+  padding: 8px 10px;
+  color: var(--teks);
+  text-decoration: none;
+}
+.saran a:hover,
+.saran a:focus-visible {
+  background: var(--permukaan-2);
+  outline: none;
+}
+.saran small {
+  color: var(--teks-redup);
+}
+/* header tabel yang bisa diklik untuk mengurutkan */
+.bisa-urut {
+  cursor: pointer;
+  user-select: none;
+}
+.bisa-urut::after {
+  content: " ↕";
+  opacity: 0.4;
+}
+.bisa-urut[aria-sort="ascending"]::after {
+  content: " ▲";
+  opacity: 1;
+}
+.bisa-urut[aria-sort="descending"]::after {
+  content: " ▼";
+  opacity: 1;
+}
+/* kartu ringkasan rapor */
+.ringkasan {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: var(--jarak-3);
+  margin-top: var(--jarak-4);
+}
+.ringkasan__item {
+  padding: var(--jarak-3) var(--jarak-4);
+  background: var(--permukaan-2);
+  border: 1px solid var(--garis);
+  border-radius: var(--radius);
+}
+.ringkasan__angka {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.ringkasan__label {
+  font-size: 13px;
+
+  color: var(--teks-redup);
+}
+
+/* ============ 14. CETAK ============ */
+@media print {
+  .topbar,
+  .filters,
+  .btn,
+  .pagination,
+  .pesan,
+  .dialog {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 12pt;
+  }
+  .container {
+    max-width: none;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+  }
+  .tabel-wrap {
+    border: 0;
+    overflow: visible;
+  }
+  .tabel {
+    min-width: 0;
+  }
+  .tabel th,
+  .tabel td {
+    border: 1px solid #000;
+    color: #000;
+    background: #fff !important;
+  }
+  .tabel tr {
+    break-inside: avoid; /* satu baris tidak terpotong di dua halaman */
+  }
+}
