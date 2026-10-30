@@ -5,4 +5,5 @@ $jumlah = $pdo->query('SELECT COUNT(*) FROM siswa')->fetchColumn(); // hitung ba
 
 echo "Koneksi berhasil. Jumlah siswa: " . $jumlah;
 
+// kayaknya konflik deh
 // abcdefghijklmnopq
