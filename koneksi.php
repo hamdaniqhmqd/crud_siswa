@@ -12,6 +12,7 @@ try {
         [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, // PHP memberi tahu jika ada kesalahan database
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, // hasil dibaca sebagai pasangan nama kolom dan nilai
+            PDO::ATTR_EMULATE_PREPARES => false, // menonaktifkan emulasi prepared statements
         ]
     );
 } catch (PDOException $e) {
